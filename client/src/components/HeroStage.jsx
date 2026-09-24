@@ -1,62 +1,29 @@
-import { Component, Suspense, lazy } from 'react'
-
-const Violin3D = lazy(() => import('./Violin3D.jsx'))
-
-class WebGLBoundary extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { hasError: false }
-  }
-
-  static getDerivedStateFromError() {
-    return { hasError: true }
-  }
-
-  componentDidCatch(error) {
-    console.warn('Violino 3D indisponível, exibindo alternativa estática.', error)
-  }
-
-  render() {
-    if (this.state.hasError) return this.props.fallback
-    return this.props.children
-  }
-}
-
-function StageFallback() {
-  return (
-    <div className="hero__stage-fallback" role="img" aria-label="Ilustração de violino dourado">
-      <svg viewBox="0 0 200 420" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-        <defs>
-          <linearGradient id="violinGold" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#d4af37" />
-            <stop offset="100%" stopColor="#8a4a24" />
-          </linearGradient>
-        </defs>
-        <path
-          d="M100 10 C130 10 140 40 128 60 C150 75 150 110 130 130 C150 150 150 190 120 205 C150 225 150 270 120 290 C150 310 150 360 100 410 C50 360 50 310 80 290 C50 270 50 225 80 205 C50 190 50 150 70 130 C50 110 50 75 72 60 C60 40 70 10 100 10 Z"
-          fill="url(#violinGold)"
-          opacity="0.9"
-        />
-        <rect x="96" y="10" width="8" height="130" fill="#2a1710" />
-      </svg>
-    </div>
-  )
-}
-
 export default function HeroStage() {
   return (
-    <div className="hero__stage" aria-hidden="false">
-      <WebGLBoundary fallback={<StageFallback />}>
-        <Suspense fallback={<StageFallback />}>
-          <Violin3D />
-        </Suspense>
-      </WebGLBoundary>
-      <div className="hero__stage-hint">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-          <path d="M8 12h8M8 12l3-3M8 12l3 3M16 12l-3-3M16 12l-3 3" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-        Arraste para girar
+    <div className="hero__stage">
+      <div className="sketchfab-embed-wrapper">
+        <iframe
+          title="Violin"
+          className="hero__stage-iframe"
+          frameBorder="0"
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          allowFullScreen
+          src="https://sketchfab.com/models/0162dea1b1044cd281c57af5e5fc2046/embed?autostart=1&ui_theme=dark&ui_infos=0&ui_stop=0&ui_controls=0&ui_watermark=0&ui_watermark_link=0&ui_annotations=0&ui_help=0&ui_settings=0&ui_vr=0&ui_fullscreen=0&ui_hint=0&ui_ar=0&ui_ar_qrcode=0&transparent=0"
+        />
       </div>
+      <p className="hero__stage-credit">
+        <a href="https://sketchfab.com/3d-models/violin-0162dea1b1044cd281c57af5e5fc2046" target="_blank" rel="nofollow noreferrer">
+          Violin
+        </a>{' '}
+        by{' '}
+        <a href="https://sketchfab.com/Voldepreuss" target="_blank" rel="nofollow noreferrer">
+          Voldepreuss
+        </a>{' '}
+        on{' '}
+        <a href="https://sketchfab.com" target="_blank" rel="nofollow noreferrer">
+          Sketchfab
+        </a>
+      </p>
     </div>
   )
 }

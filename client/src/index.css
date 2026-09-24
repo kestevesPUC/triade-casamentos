@@ -356,42 +356,42 @@ p {
 
 .hero__stage {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sketchfab-embed-wrapper {
+  position: relative;
+  width: 100%;
   height: 560px;
   border-radius: 8px;
+  overflow: hidden;
+  background: radial-gradient(120% 120% at 50% 20%, #241f19 0%, #151311 70%);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
 }
 
-.hero__stage-hint {
-  position: absolute;
-  bottom: 18px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(250, 246, 239, 0.5);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  pointer-events: none;
-}
-
-.hero__stage-hint svg {
-  width: 14px;
-  height: 14px;
-}
-
-.hero__stage-fallback {
+.hero__stage-iframe {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
-.hero__stage-fallback svg {
-  height: 100%;
-  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.4));
+.hero__stage-credit {
+  font-size: 11px;
+  color: rgba(250, 246, 239, 0.45);
+  text-align: right;
+}
+
+.hero__stage-credit a {
+  color: rgba(212, 175, 55, 0.85);
+  text-decoration: none;
+}
+
+.hero__stage-credit a:hover {
+  text-decoration: underline;
 }
 
 .hero__scroll {
@@ -899,8 +899,11 @@ p {
   }
 
   .hero__stage {
-    height: 420px;
     order: -1;
+  }
+
+  .sketchfab-embed-wrapper {
+    height: 420px;
   }
 
   .about__grid,
